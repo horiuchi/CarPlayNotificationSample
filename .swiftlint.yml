@@ -1,0 +1,18 @@
+disabled_rules:
+  - trailing_comma
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+  - indentation_width
+
+line_length: 120
+
+identifier_name:
+  min_length: 1
+  max_length: 80
+
+excluded:
+  - .vscode
+  - .build
+

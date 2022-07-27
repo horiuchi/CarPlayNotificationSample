@@ -1,0 +1,56 @@
+// See https://go.microsoft.com/fwlink/?LinkId=733558
+// for the documentation about the tasks.json format
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "swift",
+      "problemMatcher": ["$swiftc"],
+      "group": "build",
+      "label": "swift: Build Dependencies",
+      "runOptions": {
+        "runOn": "folderOpen"
+      },
+      "command": "swift",
+      "args": [
+        "build",
+        "-Xswiftc",
+        "-sdk",
+        "-Xswiftc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk",
+        "-Xswiftc",
+        "-target",
+        "-Xswiftc",
+        "arm64-apple-ios15.5-simulator"
+      ]
+    },
+    {
+      "label": "xcodegen",
+      "type": "process",
+      "command": "xcodegen"
+    },
+    {
+      "label": "xcodebuild",
+      "type": "process",
+      "command": "xcodebuild",
+      "args": [
+        "-scheme",
+        "CarPlayNotificationSample",
+        "-configuration",
+        "Debug",
+        "-sdk",
+        "${command:ios-debug.targetSdk}",
+        "-derivedDataPath",
+        "./.build-cli/DerivedData",
+        "-allowProvisioningUpdates",
+        "ARCHS=arm64"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": ["xcodegen"]
+    }
+  ]
+}
+
